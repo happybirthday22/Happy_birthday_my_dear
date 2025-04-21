@@ -1,42 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Happy Birthday, My Dear!</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday</title>
   <style>
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #fff;
-      color: #333;
+      background: #fff;
+      margin: 0;
+      padding: 0;
       overflow-x: hidden;
-      position: relative;
+      color: #333;
     }
-
-    h1, h2 {
+    .container {
+      max-width: 960px;
+      margin: auto;
+      padding: 20px;
       text-align: center;
-      padding: 20px 10px;
     }
-
     .gallery, .videos {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 10px;
-      padding: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 15px;
+      padding: 10px;
     }
-
     .gallery img, .videos video {
       width: 100%;
-      border-radius: 15px;
+      border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-
-    audio {
-      display: block;
-      margin: 20px auto;
-    }
-
     .heart {
       position: fixed;
       width: 20px;
@@ -45,8 +38,8 @@
       transform: rotate(45deg);
       animation: fall 10s linear infinite;
       opacity: 0.6;
+      z-index: 0;
     }
-
     .heart::before, .heart::after {
       content: '';
       position: absolute;
@@ -55,17 +48,14 @@
       background-color: pink;
       border-radius: 50%;
     }
-
     .heart::before {
       top: -10px;
       left: 0;
     }
-
     .heart::after {
       left: -10px;
       top: 0;
     }
-
     @keyframes fall {
       0% {
         transform: translateY(-100px) rotate(45deg);
@@ -76,43 +66,82 @@
         opacity: 0;
       }
     }
+    .lock-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .lock-screen input {
+      padding: 10px;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+    .lock-screen button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      font-size: 1rem;
+    }
   </style>
 </head>
 <body>
-  <h1>С Днём Рождения, Айсулу!</h1>
-  <h2>Ты — моё счастье, мой свет, моя нежность</h2>
-
-  <audio controls autoplay loop>
-    <source src="media/music.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-  </audio>
-
-  <div class="gallery">
-    <img src="media/photo1.jpg" alt="Photo 1">
-    <img src="media/photo2.jpg" alt="Photo 2">
-    <img src="media/photo3.jpg" alt="Photo 3">
-    <img src="media/photo4.jpg" alt="Photo 4">
-    <img src="media/photo5.jpg" alt="Photo 5">
+  <div class="lock-screen" id="lockScreen">
+    <h2>Введите пароль</h2>
+    <input type="password" id="passwordInput" placeholder="Password" />
+    <button onclick="checkPassword()">Войти</button>
   </div>
 
-  <h2>Тёплые моменты</h2>
-  <div class="videos">
-    <video src="media/video1.mp4" controls></video>
-    <video src="media/video2.mp4" controls></video>
-    <video src="media/video3.mp4" controls></video>
+  <div class="container" id="content" style="display:none;">
+    <h1>Туган кунынмен ботам</h1>
+    <p>Ты — особенная. Это поздравление только для тебя.</p>
+    
+    <h2>Поздравление</h2>
+    <p>Здесь ты можешь написать тёплые слова — я оставил для тебя это место</p>
+
+    <div class="gallery">
+<img src="media/photo1.jpg">
+<img src="media/photo2.jpg">
+<img src="media/photo3.jpg">
+<img src="media/photo4.jpg">
+<img src="media/photo5.jpg">
+<img src="media/photo6.jpg">
+<img src="media/photo7.jpg">
+<img src="media/photo8.jpg">
+<img src="media/photo9.jpg">
+    </div>
+
+    <h2>Видео моменты</h2>
+    <div class="videos">
+<video src="media/video1.mp4" controls></video>
+<video src="media/video2.mp4" controls></video>
+<video src="media/video3.mp4" controls></video>
+    </div>
   </div>
 
   <script>
+    function checkPassword() {
+      const input = document.getElementById('passwordInput').value;
+      if (input === "aisulu.b.b") {
+        document.getElementById('lockScreen').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+      } else {
+        alert("Неверный пароль");
+      }
+    }
+
     function createHeart() {
       const heart = document.createElement("div");
       heart.classList.add("heart");
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = (8 + Math.random() * 4) + "s";
       document.body.appendChild(heart);
-
       setTimeout(() => heart.remove(), 10000);
     }
-
     setInterval(createHeart, 500);
   </script>
 </body>
