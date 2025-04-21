@@ -1,34 +1,119 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>С Днём Рождения, Айсулу</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Happy Birthday, My Dear!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      color: #333;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    h1, h2 {
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .gallery, .videos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 10px;
+      padding: 20px;
+    }
+
+    .gallery img, .videos video {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    audio {
+      display: block;
+      margin: 20px auto;
+    }
+
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: fall 10s linear infinite;
+      opacity: 0.6;
+    }
+
+    .heart::before, .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div id="auth-container">
-    <h2>Введите пароль</h2>
-    <input type="password" id="password" placeholder="Пароль">
-    <button onclick="checkPassword()">Войти</button>
-    <p id="error" style="color:red;"></p>
+  <h1>С Днём Рождения, Айсулу!</h1>
+  <h2>Ты — моё счастье, мой свет, моя нежность</h2>
+
+  <audio controls autoplay loop>
+    <source src="media/music.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="gallery">
+    <img src="media/photo1.jpg" alt="Photo 1">
+    <img src="media/photo2.jpg" alt="Photo 2">
+    <img src="media/photo3.jpg" alt="Photo 3">
+    <img src="media/photo4.jpg" alt="Photo 4">
+    <img src="media/photo5.jpg" alt="Photo 5">
   </div>
-  <div id="content" style="display:none;">
-    <h1>С Днём Рождения, Айсулу!</h1>
-    <div class="gallery">
-      <img src="media/photo1.jpg" alt="photo1">
-      <img src="media/photo2.jpg" alt="photo2">
-    </div>
-    <div class="videos">
-      <video controls src="media/video1.mp4"></video>
-      <video controls src="media/video2.mp4"></video>
-    </div>
-    <audio controls autoplay loop>
-      <source src="music/song.mp3" type="audio/mp3">
-    </audio>
-    <div id="hearts"></div>
+
+  <h2>Тёплые моменты</h2>
+  <div class="videos">
+    <video src="media/video1.mp4" controls></video>
+    <video src="media/video2.mp4" controls></video>
+    <video src="media/video3.mp4" controls></video>
   </div>
-  <script src="script.js"></script>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (8 + Math.random() * 4) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 10000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
 </body>
 </html>
