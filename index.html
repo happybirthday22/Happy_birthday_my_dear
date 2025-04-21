@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>С Днём Рождения, Айсулу</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="auth-container">
+    <h2>Введите пароль</h2>
+    <input type="password" id="password" placeholder="Пароль">
+    <button onclick="checkPassword()">Войти</button>
+    <p id="error" style="color:red;"></p>
+  </div>
+  <div id="content" style="display:none;">
+    <h1>С Днём Рождения, Айсулу!</h1>
+    <div class="gallery">
+      <img src="media/photo1.jpg" alt="photo1">
+      <img src="media/photo2.jpg" alt="photo2">
+    </div>
+    <div class="videos">
+      <video controls src="media/video1.mp4"></video>
+      <video controls src="media/video2.mp4"></video>
+    </div>
+    <audio controls autoplay loop>
+      <source src="music/song.mp3" type="audio/mp3">
+    </audio>
+    <div id="hearts"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
